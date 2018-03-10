@@ -1,0 +1,24 @@
+ *******Positioning in CSS*********
+ is effect by 4 element:
+    - margin
+    - float
+    - position
+    - transform
+
+
+ -- position:
+    - static: mặc định của mọi thành phần trong html
+    - relative: xét vị trí so với vị trí ban đầu của chính nó
+    - absolute: xét vị trí so với thành phần chứa nó có position khác static
+    - fixed: xét dựa theo cửa sổ trình duyệt
+-- transform:
+    - scale: phóng to ảnh
+
+-- transition: tạo độ delay
+    - property
+    - duration
+    - easing
+    - delay        
+        - transition: property duration easing delay
+        - transition: width 0.5s ease-in-out 0.2s;
+
