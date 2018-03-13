@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css" />
+    <script src="control.js"></script>
+    <title>My Profile</title>
+</head>
+
+<body>
+    <header class="cover">
+        <section class="avartar">
+            <img src="img/avt.jpg">
+        </section>
+    </header>
+    <div class="heading">
+        <h1>Thong Do</h1>
+    </div>
+    <section class="intro">
+        <div class="title">
+            <div onclick="showAbout()" onmouseout="hideAbout()">
+                Giới Thiệu
+            </div>
+            <div onmouseout="hideHobby()" onclick="showHobby()">
+                Sở Thích
+            </div>
+            <div onmouseout="hideContact()" onclick="showContact()">
+                Liên hệ
+            </div>
+        </div>
+        <div class="content" id="about">
+            <p>
+                <span class="name">Đỗ Văn Thông</span>
+            </p>
+            <p>
+                Sinh viên trường Đại học FPT
+            </p>
+            <p>
+                Sinh ra và lớn lên tại Bắc Ninh
+            </p>
+            <p>
+                Sinh ngày 21/01/1997
+            </p>
+            <p>
+                <i>“I may be on the side of the angels but don’t think for one second that I am one of them.”
+
+                </i> – Sherlock Holmes
+            </p>
+        </div>
+        <div class="content" id="hobby">
+            <img src="img/hobby1.jpg">
+            <img src="img/hobby2.png">
+            <img src="img/hobby3.png">
+        </div>
+        <div class="content" id="contact">
+            <p>
+                <strong>Email: </strong> dovanthong97@gmail.com
+            </p>
+            <p>
+                <strong>facebook: </strong> https://www.facebook.com/thongdo1997
+            </p>
+            <p>
+                <strong>Điện thoại: </strong> 01653835552
+            </p>
+        </div>
+    </section>
+    <footer>
+        <p>
+            by
+            <a href="https://www.facebook.com/thongdo1997">thongdo</a>
+        </p>
+    </footer>
+</body>
+
+</html>
