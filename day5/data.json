@@ -1,0 +1,26 @@
+[{
+    "id": 1,
+    "questionContent": "Do you think that this is a question?",
+    "yes": 5,
+    "no": 10
+}, {
+    "id": 2,
+    "questionContent": "Is this a question?",
+    "yes": 23,
+    "no": 56
+}, {
+    "id": 3,
+    "questionContent": "hỏi gì bây h?",
+    "yes": 34,
+    "no": 98
+}, {
+    "id": 4,
+    "questionContent": "what do you want to ask?",
+    "yes": 12,
+    "no": 32
+}, {
+    "id": 5,
+    "questionContent": "ko có gì để hòi à?",
+    "yes": 0,
+    "no": 0
+}]
