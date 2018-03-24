@@ -5,6 +5,7 @@ const router = express.Router();
 const homeRouter = require('./routers/homeRouter');
 const addQues = require('./routers/addQuesRouter');
 const voteRouter = require('./routers/voteRouter');
+const mongoose = require('mongoose');
 
 let app = express();
 
@@ -23,6 +24,13 @@ app.use('/addQues', addQues);
 app.use('/vote', voteRouter);
 
 app.use(express.static('public'));
+
+mongoose.connect('mongodb://localhost/quyetdedb', (err) => {
+    if (err) {
+        console.log(err);
+    }
+    console.log('Database connect success !!!');
+});
 
 app.listen(6969, (err) => {
     if (err) {
