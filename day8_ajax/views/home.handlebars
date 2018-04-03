@@ -22,43 +22,42 @@
     </div>
 </nav>
 <div class="container">
-    
+
     <h1 class="text-center" id="text_question">{{question}}</h1>
     {{#if flag}}
-        <div class="row text-center" id="btn_answer">
-            <div class="col-md-6">
-                <a href="/vote/{{id}}/0" id="no">
-                    <button type="submit" class="btn btn-danger btn-lg" name="btn_yesno" value="no">
-                        <span class="glyphicon glyphicon-thumbs-down"></span>
-                        Sai / Không / Trái
-                    </button>
-                </a>
-            </div>
-            <div class="col-md-6">
-                <a href="/vote/{{id}}/1" id="yes">
-                    <button type="submit" class="btn btn-primary btn-lg" name="btn_yesno" value="yes">
-                        <span class="glyphicon glyphicon-thumbs-up"></span>
-                        Đúng / Có / Phải
-                    </button>
-                </a>
-            </div>
+    <div class="row text-center" id="btn_answer">
+        <div class="col-md-6">
+            <a href="/vote/{{id}}/0" id="no">
+                <button type="submit" class="btn btn-danger btn-lg" name="btn_yesno" value="no">
+                    <span class="glyphicon glyphicon-thumbs-down"></span>
+                    Sai / Không / Trái
+                </button>
+            </a>
         </div>
+        <div class="col-md-6">
+            <a href="/vote/{{id}}/1" id="yes">
+                <button type="submit" class="btn btn-primary btn-lg" name="btn_yesno" value="yes">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                    Đúng / Có / Phải
+                </button>
+            </a>
+        </div>
+    </div>
     {{/if}}
     <div class="row text-center" id="btn_chuyen">
         {{#if flag}}
-            <a href="/vote/{{id}}">
-                <button id="result" type="submit" class="btn btn-default" name="btn_yesno" value="ketquavote">Kết quả vote</button>
-            </a>
-        
-            {{!--
-            <a href="/"> --}}
-                <button type="submit" class="btn btn-default" name="btn_yesno" value="cauhoikhac" onclick="anotherQues()">Câu hỏi khác</button>
-                {{!-- </a> --}}
-            {{/if}}
+        <a href="/vote/{{id}}">
+            <button id="result" type="submit" class="btn btn-default" name="btn_yesno" value="ketquavote">Kết quả vote</button>
+        </a>
+
+        {{!--
+        <a href="/"> --}}
+            <button type="submit" class="btn btn-default" name="btn_yesno" value="cauhoikhac" id="anotherQues">Câu hỏi khác</button>
+            {{!-- </a> --}} {{/if}}
     </div>
     <script>
-    let question = null;
-       $('#no').click(() => {
+        let question = null;
+        $('#no').click(() => {
             if (question == null) {
                 location.href = "/vote/{{id}}/0";
             }
@@ -75,7 +74,6 @@
             }
         })
         $('#result').click(() => {
-            console.log('ok');
             if (question == null) {
                 location.href = "/vote/{{id}}";
             }
@@ -83,7 +81,9 @@
                 location.href = '/vote/' + question._id;
             }
         })
-        function anotherQues() {
+        $('#anotherQues').click(function (event) {
+            event.preventDefault();
+            console.log('oke');
             $.ajax({
                 url: '/',
                 method: 'POST',
@@ -92,6 +92,6 @@
                     question = res.question;
                 }
             });
-        }
-    </script> 
+        })
+    </script>
 </div>
