@@ -15,6 +15,7 @@
 
     <script defer src="https://use.fontawesome.com/releases/v5.0.9/js/all.js" integrity="sha384-8iPTk2s/jMVj81dnzb/iFR2sdA7u06vHJyyLlAd4snFpCl/SnyUjRrbdJsw1pGIl"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -29,15 +30,18 @@
         <form id="search-form">
             <input type="text" class="w-100 text-center" id="search-form-input" value="">
         </form>
+        <div class="loading">
+
+        </div>
         <div class="article-list w-100" id="article-list">
 
-            
+
         </div>
     </div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-    <script src="main.js"></script>
+    <script src="main_promise_style.js"></script>
 </body>
 
 </html>
