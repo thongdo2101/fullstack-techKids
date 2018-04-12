@@ -1,0 +1,49 @@
+<div class="container text-center">
+    <h1 class="title text-left">
+        ScoreKeeper
+    </h1>
+    <table class="table table-striped w100 text-left">
+        <tr>
+            <th></th>
+            <th>{{data.p1}}</th>
+            <th>{{data.p2}}</th>
+            <th>{{data.p3}}</th>
+            <th>{{data.p4}}</th>
+        </tr>
+        <tr class="head">
+            <th>Sum of Score</th>
+            <td>
+                <span>0</span>
+            </td>
+            <td>
+                <span>0</span>
+            </td>
+            <td>
+                <span>0</span>
+            </td>
+            <td>
+                <span>0</span>
+            </td>
+        </tr>
+        {{#each rounds}}
+        <tr>
+            <th>Round {{idRound}}</th>
+            <td>
+                <input type="text" class="form-control rounded change" id="{{data.p1}}" value="{{p1score}}" data-round="{{idRound}}">
+            </td>
+            <td>
+                <input type="text" class="form-control rounded change" id="{{data.p2}}" value="{{p2score}}" data-round="{{idRound}}">
+            </td>
+            <td>
+                <input type="text" class="form-control rounded change" id="{{data.p3}}" value="{{p3score}}" data-round="{{idRound}}">
+            </td>
+            <td>
+                <input type="text" class="form-control rounded change" id="{{data.p4}}" value="{{p4score}}" data-round="{{idRound}}">
+            </td>
+        </tr>
+        {{/each}}
+    </table>
+    <a href="/addround/{{data.id}}">
+        <button type="submit" class="btn">ADD ROUND</button>
+    </a>
+</div>

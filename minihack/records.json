@@ -1,0 +1,57 @@
+[{
+    "idGame": 1,
+    "idRound": 1,
+    "p1score": 1,
+    "p2score": 1,
+    "p3score": 1,
+    "p4score": 1
+}, {
+    "idGame": "1",
+    "idRound": 2,
+    "p1score": 0,
+    "p2score": 0,
+    "p3score": 0,
+    "p4score": 0
+}, {
+    "idGame": "1",
+    "idRound": 3,
+    "p1score": 0,
+    "p2score": 0,
+    "p3score": 0,
+    "p4score": 0
+}, {
+    "idGame": "1",
+    "idRound": 4,
+    "p1score": 0,
+    "p2score": 0,
+    "p3score": 0,
+    "p4score": 0
+}, {
+    "idGame": "1",
+    "idRound": 5,
+    "p1score": 0,
+    "p2score": 0,
+    "p3score": 0,
+    "p4score": 0
+}, {
+    "idGame": "1",
+    "idRound": 6,
+    "p1score": 0,
+    "p2score": 0,
+    "p3score": 0,
+    "p4score": 0
+}, {
+    "idGame": "1",
+    "idRound": 7,
+    "p1score": 0,
+    "p2score": 0,
+    "p3score": 0,
+    "p4score": 0
+}, {
+    "idGame": "1",
+    "idRound": 8,
+    "p1score": 0,
+    "p2score": 0,
+    "p3score": 0,
+    "p4score": 0
+}]
