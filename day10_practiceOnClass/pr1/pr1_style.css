@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.ads {
+    width: 200px;
+    height: 700px;
+    background-color: rgb(218, 232, 252);
+    flex: 0 0 200px;
+    margin-left: 1px;
+    padding: 10px;
+}
+
+.menu {
+    background-color: rgb(213, 232, 212);
+    width: 200px;
+    height: 800px;
+    flex: 0 0 200px;
+    margin-left: 1px;
+    padding: 10px;
+}
+
+.article1 {
+    background-color: rgb(179, 179, 179);
+    padding: 10px;
+    margin-left: 1px;
+}
+
+.article2 {
+    background-color: rgb(102, 255, 255);
+    margin-left: 1px;
+    padding: 10px;
+}

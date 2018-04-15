@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex ;
+    align-items: flex-start;
+}
+div {
+    background-color: rgb(179, 179, 179);
+    padding: 10px; 
+    margin-left: 1px;
+}

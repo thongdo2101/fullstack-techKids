@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: stretch;
+}
+
+div {
+    padding: 10px;
+}
+
+.one {
+    background-color: rgb(218, 232, 252);
+    border: 1px solid rgba(0, 0, 255, 0.39);
+}
+
+.two {
+    background-color: rgb(213, 232, 212);
+    border: 1px solid rgba(0, 128, 0, 0.397);
+}
+
+.three {
+    background-color: rgb(255, 230, 204);
+    border: 1px solid rgba(255, 201, 143, 0.788);
+}
+
+.four {
+    background-color: rgb(248, 206, 204);
+    border: 1px solid rgb(253, 63, 42);
+}
