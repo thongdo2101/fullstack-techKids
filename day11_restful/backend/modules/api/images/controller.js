@@ -133,8 +133,54 @@ const addComment = (
 });
 
 // TODO like image
+const likeImage = imageId => new Promise((resolve, reject) => {
 
+    imageModel
+        .findOne({
+            active: true,
+            _id: imageId
+        })
+        .select("like")
+        .exec()
+        .then(data => {
+            imageModel
+                .where({
+                    _id: imageId
+                })
+                .update({
+                    like: Number(data["like"]) + 1
+                })
+                .then(data => resolve(data))
+                .catch(err => reject(err));
+        })
+        .catch(err => reject(err));
+});
 // TODO unlike image
+const unlikeImage = imageId => new Promise((resolve, reject) => {
+
+    imageModel
+        .findOne({
+            active: true,
+            _id: imageId
+        })
+        .select("like")
+        .exec()
+        .then(data => {
+            if (Number(data["like"]) == 0) {
+                return;
+            }
+            imageModel
+                .where({
+                    _id: imageId
+                })
+                .update({
+                    like: Number(data["like"]) - 1
+                })
+                .then(data => resolve(data))
+                .catch(err => reject(err));
+        })
+        .catch(err => reject(err));
+});
 
 // TODO delete comment
 
@@ -144,5 +190,7 @@ module.exports = {
     updateImage,
     getAllImages,
     getImage,
-    addComment
+    addComment,
+    likeImage,
+    unlikeImage
 };

@@ -50,10 +50,35 @@ router.post('/', (req, res) => {
 // TODO delete image
 
 // TODO like image
+router.put('/like/:id', (req, res) => {
+    imageController.likeImage(req.params.id)
+        .then(result => res.send(result))
+        .catch(err => {
+            console.log(err);
+            res.status(500).send(err);
+        });
+});
+
 
 // TODO unlike image
+router.put('/unlike/:id', (req, res) => {
+    imageController.unlikeImage(req.params.id)
+        .then(result => res.send(result))
+        .catch(err => {
+            console.log(err);
+            res.status(500).send(err);
+        });
+});
 
 // TODO add comment
+router.post('/:imageId/comments', (req, res) => {
+    imageController.addComment(req.params.imageId)
+        .then(result => res.send(result))
+        .catch(err => {
+            console.log(err);
+            res.status(500).send(err);
+        });
+});
 
 // TODO delete comment
 
