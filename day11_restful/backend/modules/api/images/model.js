@@ -1,22 +1,34 @@
+// import mongoose
 const mongoose = require('mongoose');
+
+// create Schema object to manipulate with collections
 const Schema = mongoose.Schema;
-const commentModel = new Schema({
+
+// define comment schema
+const commentSchema = new Schema({
     createdBy: {
-        type: String
+        type: String,
+        required: true
+    },
+    content: {
+        type: String,
+        required: true
     }
 }, {
     timestamps: {
         createdAt: "createdAt"
     }
 });
-const imageModel = new Schema({
+
+// define image schema
+const imageSchema = new Schema({
     ImageUrl: {
         type: String,
-        require: true
+        required: true
     },
     title: {
         type: String,
-        require: true
+        required: true
     },
     description: {
         type: String,
@@ -24,7 +36,7 @@ const imageModel = new Schema({
     },
     createdBy: {
         type: String,
-        require: true
+        required: true
     },
     view: {
         type: Number,
@@ -49,5 +61,5 @@ const imageModel = new Schema({
 });
 
 
-
-module.exports = mongoose.model("images", imageModel);
+// create image model
+module.exports = mongoose.model("images", imageSchema); // images is the name of collection in db

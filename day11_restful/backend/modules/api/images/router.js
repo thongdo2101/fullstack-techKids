@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const imageController = require('./controller');
+const imageController = require('./controller').default;
 
 router.get('/', (req, res) => {
     imageController.getAllImages(req.query.page || 1)

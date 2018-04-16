@@ -1,32 +1,56 @@
+// import image model
 const imageModel = require("./model");
-const createImage = ({
-    ImageUrl,
-    title,
-    description,
-    createdBy
-}) => new Promise((resolve, reject) => {
-    imageModel.create({
-            ImageUrl,
-            title,
-            description,
-            createdBy
-        })
-        .then(data => resolve({
-            id: data._id
-        }))
-        .catch(err => reject(err));
-});
+
+// create function: createImage
+const createImage = (
+    // parameters(tham số truyền vào)
+    {
+        ImageUrl,
+        title,
+        description,
+        createdBy
+    }
+    // return a promise
+) => new Promise(
+    // callback
+    (resolve, reject) => { // two params @resolve and @reject if type of function
+        imageModel.create({
+                ImageUrl,
+                title,
+                description,
+                createdBy
+            })
+            .then(
+                data => resolve({
+                    id: data._id
+                })
+            )
+            .catch(
+                err => reject(err)
+            );
+    }
+);
 
 const getAllImages = page => new Promise((resolve, reject) => {
-    imageModel.find({
-            "active": true
-        })
-        .sort({
-            createdAt: -1
-        })
+    imageModel.find(
+            // condition of finding
+            {
+                "active": true
+            }
+        )
+        .sort(
+            // condition of sort 
+            {
+                createdAt: -1
+            }
+        )
+        // specifies the number of documents to skip: from
         .skip((page - 1) * 20)
+        // specifies the number of documents wil return : to
         .limit(20)
+        // specifies which fields to include or exclude 
         .select("_id ImageUrl title description createdAt createdBy view like")
+        // execute the query
         .exec()
         .then(data => resolve(data))
         .catch(err => reject(err));
@@ -35,7 +59,7 @@ const getAllImages = page => new Promise((resolve, reject) => {
 const getImage = id => new Promise((resolve, reject) => {
     //TODO homework
     imageModel.findOne({
-            active: true,   
+            active: true,
             _id: id
         })
         .select("_id ImageUrl title description createdAt createdBy view like comment")
@@ -55,9 +79,9 @@ const updateImage = (id, {
     title,
     description
 }) => new Promise((resolve, reject) => {
-    imageModel.update({
+    imageModel.where({
             _id: id
-        }, {
+        }).update({
             ImageUrl,
             title,
             description,
@@ -70,9 +94,9 @@ const updateImage = (id, {
 });
 
 const deleteImage = id => new Promise((resolve, reject) => {
-    imageModel.update({
+    imageModel.where({
             _id: id
-        }, {
+        }).update({
             active: false
         })
         .then(data => resolve({
