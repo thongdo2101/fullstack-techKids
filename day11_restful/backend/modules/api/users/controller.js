@@ -20,10 +20,16 @@ const createUser = ({
 
 // TODO get All users
 const getAllUsers = page => new Promise((resolve, reject) => {
-    userModel.find()
-        .where({
-            active: true
+    userModel
+        .find({
+            "Active": true
         })
+        .sort(
+            // condition of sort 
+            {
+                createdAt: -1
+            }
+        )
         .skip((page * 20) - 1)
         .limit(20)
         .select('_id Avatar Email Username Password')
@@ -36,7 +42,7 @@ const getAllUsers = page => new Promise((resolve, reject) => {
 const getUser = userId => new Promise((resolve, reject) => {
     userModel.findOne()
         .where({
-            active: true,
+            Active: true,
             _id: userId
         })
         .select('_id Avatar Email Username Password')
@@ -46,40 +52,61 @@ const getUser = userId => new Promise((resolve, reject) => {
 });
 
 // TODO update username
-const updateUsername = (userId, username) => new Promise((resolve, reject) => {
+const updateUsername = (userId, {
+    Username
+}) => new Promise((resolve, reject) => {
     userModel.where({
             _id: userId
         })
         .update({
-            Username: username
+            Username
         })
         .then(data => resolve(data))
         .catch(err => reject(err));
 });
 
 // TODO update user email
-const updateUserEmail = (userId, email) => new Promise((resolve, reject) => {
+const updateUserEmail = (userId, {
+    Email
+}) => new Promise((resolve, reject) => {
     userModel.where({
             _id: userId
         })
         .update({
-            Email: email
+            Email
         })
         .then(data => resolve(data))
         .catch(err => reject(err));
 });
 
 // TODO update user avatar
-const updateUserAvatar = (userId, avatar) => new Promise((resolve, reject) => {
+const updateUserAvatar = (userId, {
+    Avatar
+}) => new Promise((resolve, reject) => {
     userModel.where({
             _id: userId
         })
         .update({
-            Avatar: avatar
+            Avatar
         })
         .then(data => resolve(data))
         .catch(err => reject(err));
 });
+
+// TODO update user password
+const updateUserPassword = (userId, {
+    Password
+}) => new Promise((resolve, reject) => {
+    userModel.where({
+            _id: userId
+        })
+        .update({
+            Password
+        })
+        .then(data => resolve(data))
+        .catch(err => reject(err));
+});
+
 // TODO delete user
 const deleteUser = userId => new Promise((resolve, reject) => {
     userModel
@@ -87,7 +114,7 @@ const deleteUser = userId => new Promise((resolve, reject) => {
             _id: userId
         })
         .update({
-            active: false
+            Active: false
         })
         .then(data => resolve(data))
         .catch(err => reject(err));
@@ -101,5 +128,6 @@ module.exports = {
     updateUsername,
     updateUserEmail,
     updateUserAvatar,
+    updateUserPassword,
     deleteUser
 };

@@ -62,6 +62,17 @@ router.put('/:userId/avatar', (req, res) => {
             res.status(500).send(err);
         });
 });
+
+// TODO update user password
+router.put('/:userId/password', (req, res) => {
+    userController.updateUserPassword(req.params.userId, req.body)
+        .then(data => res.send(data))
+        .catch(err => {
+            console.log(err);
+            res.status(500).send(err);
+        });
+});
+
 // TODO delete user
 router.delete('/:userId', (req, res) => {
     userController.deleteUser(req.params.userId)

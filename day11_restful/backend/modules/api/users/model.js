@@ -1,11 +1,7 @@
-import {
-    model
-} from 'mongoose';
-
 // TODO import mongoose
 const mongoose = require('mongoose');
 // TODO create schema object of mongoose
-const Schema = mongoose.Schema();
+const Schema = mongoose.Schema;
 // TODO define user schema
 const userSchema = new Schema({
     Avatar: {
@@ -35,4 +31,4 @@ const userSchema = new Schema({
 });
 
 // TODO create user model
-module.exports = model('users', userSchema);
+module.exports = mongoose.model('users', userSchema);
