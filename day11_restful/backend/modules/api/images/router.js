@@ -46,7 +46,7 @@ router.post('/', (req, res) => {
 });
 
 // TODO like image
-router.put('/like/:id', (req, res) => {
+router.put('/:id/like', (req, res) => {
     imageController.likeImage(req.params.id)
         .then(result => res.send(result))
         .catch(err => {
@@ -56,7 +56,7 @@ router.put('/like/:id', (req, res) => {
 });
 
 // TODO unlike image
-router.put('/unlike/:id', (req, res) => {
+router.put('/:id/unlike', (req, res) => {
     imageController.unlikeImage(req.params.id)
         .then(result => res.send(result))
         .catch(err => {
