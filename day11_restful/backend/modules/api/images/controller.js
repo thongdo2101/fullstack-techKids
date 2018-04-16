@@ -14,7 +14,8 @@ const createImage = (
 ) => new Promise(
     // callback
     (resolve, reject) => { // two params @resolve and @reject if type of function
-        imageModel.create({
+        imageModel
+            .create({
                 ImageUrl,
                 title,
                 description,
@@ -32,7 +33,8 @@ const createImage = (
 );
 
 const getAllImages = page => new Promise((resolve, reject) => {
-    imageModel.find(
+    imageModel
+        .find(
             // condition of finding
             {
                 "active": true
@@ -58,7 +60,8 @@ const getAllImages = page => new Promise((resolve, reject) => {
 
 const getImage = id => new Promise((resolve, reject) => {
     //TODO homework
-    imageModel.findOne({
+    imageModel
+        .findOne({
             active: true,
             _id: id
         })
@@ -68,18 +71,18 @@ const getImage = id => new Promise((resolve, reject) => {
         .catch(err => reject(err));
 });
 
-// TODO like image
-// TODO unlike image
-// TODO comment
-// TODO delete comment
-
-
-const updateImage = (id, {
-    ImageUrl,
-    title,
-    description
-}) => new Promise((resolve, reject) => {
-    imageModel.where({
+const updateImage = (
+    // id param
+    id,
+    // value param
+    {
+        ImageUrl,
+        title,
+        description
+    }
+) => new Promise((resolve, reject) => {
+    imageModel
+        .where({
             _id: id
         }).update({
             ImageUrl,
@@ -94,7 +97,8 @@ const updateImage = (id, {
 });
 
 const deleteImage = id => new Promise((resolve, reject) => {
-    imageModel.where({
+    imageModel
+        .where({
             _id: id
         }).update({
             active: false
@@ -105,12 +109,40 @@ const deleteImage = id => new Promise((resolve, reject) => {
         .catch(err => reject(err));
 });
 
+// TODO add comment
+const addComment = (
+    imageId, {
+        createdBy,
+        content
+    }
+) => new Promise((resolve, reject) => {
+    imageModel
+        .where({
+            _id: imageId
+        })
+        .update({
+            $push: {
+                comment: {
+                    createdBy,
+                    content
+                }
+            }
+        })
+        .then(data => resolve(data))
+        .catch(err => reject(err));
+});
 
+// TODO like image
+
+// TODO unlike image
+
+// TODO delete comment
 
 module.exports = {
     createImage,
     deleteImage,
     updateImage,
     getAllImages,
-    getImage
+    getImage,
+    addComment
 };

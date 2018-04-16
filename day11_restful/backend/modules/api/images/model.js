@@ -51,7 +51,7 @@ const imageSchema = new Schema({
         default: true
     },
     comment: {
-        type: [commentModel],
+        type: [commentSchema],
         default: []
     }
 }, {
