@@ -9,7 +9,8 @@ const bodyParser = require('body-parser');
 
 // import images router to app
 const imageRouter = require('./modules/api/images/router');
-
+// import users router to app
+const userRouter = require('./modules/api/users/router');
 // initialize the app
 const app = express();
 
@@ -20,8 +21,10 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-// register a router
+// register routers
 app.use('/api/images', imageRouter);
+app.use('/api/users', userRouter);
+
 
 // Connect with DB
 mongoose.connect('mongodb://localhost:27017/tk-hotgirls', (err) => {

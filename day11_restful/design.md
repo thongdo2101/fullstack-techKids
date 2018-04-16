@@ -7,6 +7,7 @@
 ## 1. Collections
 - Users
     - Avatar
+    - Email
     - Username
     - password
 - GirlImages
