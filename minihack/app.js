@@ -21,25 +21,27 @@ app.use(express.static('public'));
 app.get('/', (req, res) => {
     res.render('home');
 });
-app.get('/addround/:idGame', (req, res) => {
+app.post('/addround/:idGame', (req, res) => {
     var records = fileController.readFileSync('./records.json');
     let idRound = records.length + 1;
-    records.push({
-        idGame: req.params.idGame,
+    var idGame = req.params.idGame;
+    var newRound = {
+        idGame: idGame,
         idRound: idRound,
         p1score: 0,
         p2score: 0,
         p3score: 0,
         p4score: 0
-    });
+    };
+    records.push(newRound);
 
     fileController.writeFile('./records.json', records, (err) => {
         if (err) {
             console.log(err);
         }
-        res.redirect('/game/' + req.params.idGame);
+        res.redirect('/game/' + idGame);
     });
-})
+});
 app.use("/game/:id", (req, res) => {
     var data = fileController.readFileSync('./data.json');
     let idGame = req.params.id;
@@ -50,9 +52,18 @@ app.use("/game/:id", (req, res) => {
             rounds.push(round);
         }
     });
+    var rounds2 = rounds.map(round => ({
+        idGame: round.idGame,
+        idRound: round.idRound,
+        p1score: round.p1score,
+        p2score: round.p2score,
+        p3score: round.p3score,
+        p4score: round.p4score,
+        index: rounds.indexOf(round)
+    }));
     res.render('inGame', {
         data: data[idGame - 1],
-        rounds: rounds
+        rounds: rounds2
     });
 });
 

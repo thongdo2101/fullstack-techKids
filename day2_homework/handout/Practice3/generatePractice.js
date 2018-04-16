@@ -1,11 +1,9 @@
-
-
-'use strict'
-
+"use strict";
+"use moz";
 function generate(testLengthArray){
-  var list = new Array;
+  var list = [];
   testLengthArray.forEach(element => {
-    var input = new Array;
+    var input = [];
     for (let i = 0; i < element; i++) {
       input.push(getRandomInt(-10000,10000));
     }

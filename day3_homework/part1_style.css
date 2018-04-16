@@ -12,6 +12,7 @@ nav.menu span {
     height: 30px;
     line-height: 30px;
     position: relative;
+    cursor: pointer;
 }
 
 nav.menu span:hover {

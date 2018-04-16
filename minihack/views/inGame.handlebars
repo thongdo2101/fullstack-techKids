@@ -11,39 +11,40 @@
             <th>{{data.p4}}</th>
         </tr>
         <tr class="head">
-            <th>Sum of Score</th>
+            <th>Sum of Score(0)</th>
             <td>
-                <span>0</span>
+                0
             </td>
             <td>
-                <span>0</span>
+                0
             </td>
             <td>
-                <span>0</span>
+                0
             </td>
             <td>
-                <span>0</span>
+                0
             </td>
         </tr>
         {{#each rounds}}
         <tr>
-            <th>Round {{idRound}}</th>
+            <th>Round {{index}}</th>
             <td>
-                <input type="text" class="form-control rounded change" id="{{data.p1}}" value="{{p1score}}" data-round="{{idRound}}">
+                <input type="text" class="form-control rounded change" id="{{data.p1}}" value="{{p1score}}" data-idRound="{{idRound}}">
             </td>
             <td>
-                <input type="text" class="form-control rounded change" id="{{data.p2}}" value="{{p2score}}" data-round="{{idRound}}">
+                <input type="text" class="form-control rounded change" id="{{data.p2}}" value="{{p2score}}" data-idRound="{{idRound}}">
             </td>
             <td>
-                <input type="text" class="form-control rounded change" id="{{data.p3}}" value="{{p3score}}" data-round="{{idRound}}">
+                <input type="text" class="form-control rounded change" id="{{data.p3}}" value="{{p3score}}" data-idRound="{{idRound}}">
             </td>
             <td>
-                <input type="text" class="form-control rounded change" id="{{data.p4}}" value="{{p4score}}" data-round="{{idRound}}">
+                <input type="text" class="form-control rounded change" id="{{data.p4}}" value="{{p4score}}" data-idRound="{{idRound}}">
             </td>
         </tr>
         {{/each}}
     </table>
-    <a href="/addround/{{data.id}}">
+    <form action="/addround/{{data.id}}" method="POST">
         <button type="submit" class="btn">ADD ROUND</button>
-    </a>
+    </form>
+
 </div>

@@ -1,12 +1,16 @@
-import {
-    model
-} from 'mongoose';
-
 const mongoose = require('mongoose');
-const Shema = mongoose.Schema;
-
+const Schema = mongoose.Schema;
+const commentModel = new Schema({
+    createdBy: {
+        type: String
+    }
+}, {
+    timestamps: {
+        createdAt: "createdAt"
+    }
+});
 const imageModel = new Schema({
-    imageUrl: {
+    ImageUrl: {
         type: String,
         require: true
     },
@@ -32,22 +36,18 @@ const imageModel = new Schema({
     },
     active: {
         type: Boolean,
-        require: true
+        default: true
     },
     comment: {
         type: [commentModel],
         default: []
     }
 }, {
-    timestamps: true
+    timestamps: {
+        createdAt: "createdAt"
+    }
 });
 
-const commentModel = new Schema({
-    createdBy: {
-        type: String
-    }
-}, {
-    timestamps: true
-});
+
 
 module.exports = mongoose.model("images", imageModel);

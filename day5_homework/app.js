@@ -81,6 +81,7 @@ app.get('/vote/:id/:value', (req, res) => {
         console.log(ex);
     }
 });
+
 app.listen(6969, (err) => {
     if (err) {
         console.log(err);
