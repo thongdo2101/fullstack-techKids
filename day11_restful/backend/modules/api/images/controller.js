@@ -88,7 +88,6 @@ const updateImage = (
             ImageUrl,
             title,
             description,
-            createdBy
         })
         .then(data => resolve({
             id: data._id
@@ -183,7 +182,24 @@ const unlikeImage = imageId => new Promise((resolve, reject) => {
 });
 
 // TODO delete comment
+const deleteComment = (imageId, commnetId) => new Promise((resolve, reject) => {
+    imageModel.where({
+            _id: imageId
+        })
+        .update({
+            $pull: {
+                comment: {
+                    _id: commnetId
+                }
+            }
+        })
+        .then(data =>
+            resolve(data)
+        )
+        .catch(err => reject(err));
+});
 
+// export model
 module.exports = {
     createImage,
     deleteImage,
@@ -192,5 +208,6 @@ module.exports = {
     getImage,
     addComment,
     likeImage,
-    unlikeImage
+    unlikeImage,
+    deleteComment
 };

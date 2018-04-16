@@ -45,10 +45,6 @@ router.post('/', (req, res) => {
         });
 });
 
-// TODO update image
-
-// TODO delete image
-
 // TODO like image
 router.put('/like/:id', (req, res) => {
     imageController.likeImage(req.params.id)
@@ -58,7 +54,6 @@ router.put('/like/:id', (req, res) => {
             res.status(500).send(err);
         });
 });
-
 
 // TODO unlike image
 router.put('/unlike/:id', (req, res) => {
@@ -70,9 +65,29 @@ router.put('/unlike/:id', (req, res) => {
         });
 });
 
+// TODO update image
+router.put('/:imageId', (req, res) => {
+    imageController.updateImage(req.params.imageId, req.body)
+        .then(data => res.send(data))
+        .catch(err => {
+            console.log(err)
+                .res.status(500).send(err);
+        });
+});
+
+// TODO delete image
+router.delete('/:imageId', (req, res) => {
+    imageController.deleteImage(req.params.imageId)
+        .then(data => res.send(data))
+        .catch(err => {
+            console.log(err);
+            res.status(500).send(err);
+        });
+});
+
 // TODO add comment
 router.post('/:imageId/comments', (req, res) => {
-    imageController.addComment(req.params.imageId)
+    imageController.addComment(req.params.imageId, req.body)
         .then(result => res.send(result))
         .catch(err => {
             console.log(err);
@@ -81,8 +96,14 @@ router.post('/:imageId/comments', (req, res) => {
 });
 
 // TODO delete comment
-
-// TODO update commnet
+router.delete('/:imageId/comments/:commentId', (req, res) => {
+    imageController.deleteComment(req.params.imageId, req.params.commentId)
+        .then(result => res.send(result))
+        .catch(err => {
+            console.log(err);
+            res.status(500).send(err);
+        });
+});
 
 
 // export router
