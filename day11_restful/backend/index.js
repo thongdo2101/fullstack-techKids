@@ -11,6 +11,8 @@ const bodyParser = require('body-parser');
 const imageRouter = require('./modules/api/images/router');
 // import users router to app
 const userRouter = require('./modules/api/users/router');
+// express-session
+const session = require('express-session');
 // initialize the app
 const app = express();
 
@@ -25,6 +27,15 @@ app.use(bodyParser.urlencoded({
 app.use('/api/images', imageRouter);
 app.use('/api/users', userRouter);
 
+// Khởi tạo session
+app.use(session({
+    secret: "",
+    resave: false, // cứ mỗi lần login thì tạo cookie 1 lần
+    saveUninitialized: false, // người dùng chưa login thì ko save
+    cookie: {
+        maxAge: 12 * 60 * 60 * 1000
+    }
+}));
 
 // Connect with DB
 mongoose.connect('mongodb://localhost:27017/tk-hotgirls', (err) => {

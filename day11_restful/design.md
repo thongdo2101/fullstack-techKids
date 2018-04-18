@@ -44,3 +44,7 @@ Modern day:
       
 ## 4. Cooked Data
       
+## 5. Authentication/Authorization
+
+    - Authentication: Who you are
+    - Authorization: what you can do
