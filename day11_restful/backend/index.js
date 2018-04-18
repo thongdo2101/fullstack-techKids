@@ -13,6 +13,8 @@ const imageRouter = require('./modules/api/images/router');
 const userRouter = require('./modules/api/users/router');
 // express-session
 const session = require('express-session');
+// config
+const config = require('./config-local.json');
 // initialize the app
 const app = express();
 
@@ -27,18 +29,19 @@ app.use(bodyParser.urlencoded({
 app.use('/api/images', imageRouter);
 app.use('/api/users', userRouter);
 
-// Khởi tạo session
+// create session
 app.use(session({
-    secret: "",
+    secret: config.sessionSecret,
     resave: false, // cứ mỗi lần login thì tạo cookie 1 lần
     saveUninitialized: false, // người dùng chưa login thì ko save
     cookie: {
+        secure: config.secureCookie,
         maxAge: 12 * 60 * 60 * 1000
     }
 }));
 
 // Connect with DB
-mongoose.connect('mongodb://localhost:27017/tk-hotgirls', (err) => {
+mongoose.connect(config.mongoPath, (err) => {
     if (err) {
         console.error(err);
     } else {
