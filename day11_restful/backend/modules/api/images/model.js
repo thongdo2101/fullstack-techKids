@@ -35,8 +35,10 @@ const imageSchema = new Schema({
         default: ''
     },
     createdBy: {
-        type: String,
-        required: true
+        type: Schema.Types.ObjectId,
+        ref: "users",
+        required: true,
+
     },
     view: {
         type: Number,

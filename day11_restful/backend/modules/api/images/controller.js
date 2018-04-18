@@ -8,7 +8,7 @@ const createImage = (
         ImageUrl,
         title,
         description,
-        createdBy
+        id
     }
     // return a promise
 ) => new Promise(
@@ -19,7 +19,7 @@ const createImage = (
                 ImageUrl,
                 title,
                 description,
-                createdBy
+                id
             })
             .then(
                 data => resolve({

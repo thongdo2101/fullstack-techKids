@@ -11,10 +11,16 @@ const bodyParser = require('body-parser');
 const imageRouter = require('./modules/api/images/router');
 // import users router to app
 const userRouter = require('./modules/api/users/router');
+//
+const authRouter = require('./modules/api/auth/router');
 // express-session
 const session = require('express-session');
 // config
-const config = require('./config-local.json');
+try {
+     require("./");
+} catch (err) {
+    console.log(err);
+}
 // initialize the app
 const app = express();
 
@@ -28,6 +34,7 @@ app.use(bodyParser.urlencoded({
 // register routers
 app.use('/api/images', imageRouter);
 app.use('/api/users', userRouter);
+app.use('/api/auth', authRouter);
 
 // create session
 app.use(session({

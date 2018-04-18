@@ -11,10 +11,14 @@ const authController = require('./controller');
 router.post('/', (req, res) => {
     authController.login(req.body)
         .then(userInfo => {
+            console.log('user info');
+            console.log("userInfo: " + userInfo);
             req.session.userInfo = userInfo; // gán value cho session
             res.send("Logged in");
         })
-        .catch(err => res.status(500).send(err));
+        .catch(err => {
+            res.status(err.status).send(err.err);
+        });
 });
 
 // user log out
@@ -22,3 +26,5 @@ router.delete('/', (req, res) => {
     req.session.destroy();
     res.send("Logged out");
 });
+
+module.exports = router;

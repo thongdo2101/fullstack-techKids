@@ -123,9 +123,9 @@ const deleteUser = userId => new Promise((resolve, reject) => {
 const getUserForAuth = username => new Promise((resolve, reject) => {
     userModel
         .findOne({
-            usename
+            'Username': username
         })
-        .select("Usename Password _id")
+        .select("Username Password _id")
         .then(user => resolve(user))
         .catch(err => reject(err));
 });

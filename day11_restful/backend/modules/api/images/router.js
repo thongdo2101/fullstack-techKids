@@ -6,6 +6,8 @@ const router = express.Router();
 
 // import image controller
 const imageController = require('./controller');
+//
+const authMiddleware = require('../auth/auth');
 
 // get all iamges
 router.get('/', (req, res) => {
@@ -36,7 +38,8 @@ router.get('/:id', (req, res) => {
 });
 
 // create new image
-router.post('/', (req, res) => {
+router.post('/', authMiddleware.authorize, (req, res) => {
+    req.body.id = req.session.userInfo.id;
     imageController.createImage(req.body)
         .then(result => res.send(result))
         .catch(err => {
