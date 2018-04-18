@@ -9,7 +9,7 @@ const authController = require('./controller');
 
 // user login
 router.post('/', (req, res) => {
-    authController.login(req)
+    authController.login(req.body)
         .then(userInfo => {
             req.session.userInfo = userInfo; // gán value cho session
             res.send("Logged in");
