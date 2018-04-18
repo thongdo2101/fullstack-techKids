@@ -33,13 +33,19 @@ const userSchema = new Schema({
         createdAt: "createdAt"
     }
 });
+
+
 userSchema.pre('save', function (next) {
-    if (!this.isModified('password')) {
+    if (!this.isModified('Password')) {
         return next();
     }
-    bcrypt.genSalt(12)
+    bcrypt
+        .genSalt(12)
         .then(salt => bcrypt.hash(this.Password, salt))
-        .then(result => next())
+        .then(hash => {
+            this.Password = hash;
+            next();
+        })
         .catch(err => next(err));
 });
 
