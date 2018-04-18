@@ -147,7 +147,9 @@ const likeImage = imageId => new Promise((resolve, reject) => {
                     _id: imageId
                 })
                 .update({
-                    like: Number(data["like"]) + 1
+                    $inc: {
+                        like: 1
+                    }
                 })
                 .then(data => resolve(data))
                 .catch(err => reject(err));
@@ -173,7 +175,9 @@ const unlikeImage = imageId => new Promise((resolve, reject) => {
                     _id: imageId
                 })
                 .update({
-                    like: Number(data["like"]) - 1
+                    $inc: {
+                        like: -1
+                    }
                 })
                 .then(data => resolve(data))
                 .catch(err => reject(err));
