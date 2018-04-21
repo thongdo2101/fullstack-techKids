@@ -17,10 +17,13 @@ const authRouter = require('./modules/api/auth/router');
 const session = require('express-session');
 // config
 try {
-     require("./");
+    require("./config.json");
 } catch (err) {
-    console.log(err);
+    throw new Error(
+        "File config.json not created. Check out config-template.json"
+    );
 }
+const config = require("./config.json");
 // initialize the app
 const app = express();
 
@@ -46,6 +49,10 @@ app.use(session({
         maxAge: 12 * 60 * 60 * 1000
     }
 }));
+
+app.get('/', (req, res) => {
+    res.status(404).send('404 NOT FOUND');
+});
 
 // Connect with DB
 mongoose.connect(config.mongoPath, (err) => {

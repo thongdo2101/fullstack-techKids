@@ -9,16 +9,15 @@ const authController = require('./controller');
 
 // user login
 router.post('/', (req, res) => {
-    authController.login(req.body)
-        .then(userInfo => {
-            console.log('user info');
-            console.log("userInfo: " + userInfo);
-            req.session.userInfo = userInfo; // gán value cho session
+    authController
+        .login(req.body)
+        .then(user => {
+            console.log('user info:');
+            console.log(user);
+            req.session.userInfo = user; // gán value cho session
             res.send("Logged in");
         })
-        .catch(err => {
-            res.status(err.status).send(err.err);
-        });
+        .catch(err => res.status(err.status).send(err.err));
 });
 
 // user log out
