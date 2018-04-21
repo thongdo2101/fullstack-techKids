@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 
 // import images router to app
 const imageRouter = require('./modules/api/images/router');
+
 // import users router to app
 const userRouter = require('./modules/api/users/router');
 //
@@ -40,15 +41,19 @@ app.use('/api/users', userRouter);
 app.use('/api/auth', authRouter);
 
 // create session
-app.use(session({
-    secret: config.sessionSecret,
-    resave: false, // cứ mỗi lần login thì tạo cookie 1 lần
-    saveUninitialized: false, // người dùng chưa login thì ko save
-    cookie: {
-        secure: config.secureCookie,
-        maxAge: 12 * 60 * 60 * 1000
-    }
-}));
+try {
+    app.use(session({
+        secret: config.sessionSecret,
+        resave: false, // cứ mỗi lần login thì tạo cookie 1 lần
+        saveUninitialized: false, // người dùng chưa login thì ko save
+        cookie: {
+            secure: false,
+            maxAge: 12 * 60 * 60 * 1000
+        }
+    }));
+} catch (err) {
+    console.log(err);
+}
 
 app.get('/', (req, res) => {
     res.status(404).send('404 NOT FOUND');

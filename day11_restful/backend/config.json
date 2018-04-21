@@ -1,5 +1,4 @@
 {
     "mongoPath": "mongodb://localhost:27017/tk-hotgirls",
-    "sessionSecret": "neo",
-    "secureCookie": false
+    "sessionSecret": "neo123456"
 }
