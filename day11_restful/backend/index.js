@@ -34,12 +34,6 @@ const app = express();
 app.use(bodyParser.urlencoded({
     extended: false
 }));
-
-// register routers
-app.use('/api/images', imageRouter);
-app.use('/api/users', userRouter);
-app.use('/api/auth', authRouter);
-
 // create session
 try {
     app.use(session({
@@ -54,6 +48,12 @@ try {
 } catch (err) {
     console.log(err);
 }
+// register routers
+app.use('/api/images', imageRouter);
+app.use('/api/users', userRouter);
+app.use('/api/auth', authRouter);
+
+
 
 app.get('/', (req, res) => {
     res.status(404).send('404 NOT FOUND');

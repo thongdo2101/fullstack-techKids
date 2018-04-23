@@ -13,10 +13,9 @@ router.post('/', (req, res) => {
         .login(req.body)
         .then(user => {
             try {
-                console.log('user info:');
-                console.log(typeof (user));
                 var userInfo = user;
-                req.session.userInfo = userInfo; // gán value cho session
+                var sess = req.session;
+                sess.userInfo = userInfo; // gán value cho session
                 res.send("Logged in");
             } catch (err) {
                 console.log(err);

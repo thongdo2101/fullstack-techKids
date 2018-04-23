@@ -20,8 +20,6 @@ const login = ({
             userController
                 .getUserForAuth(username)
                 .then(user => {
-                    console.log("a: " + user);
-                    console.log("b: " + user.Password);
                     if (!user || !user.Password) {
                         reject({
                             status: 400, // bad request
@@ -31,15 +29,12 @@ const login = ({
                         console.log('begin');
                         bcrypt.compare(password, user.Password)
                             .then(result => {
-                                console.log('then');
                                 if (result) {
-                                    console.log('resolve');
                                     resolve({
                                         username: user.Username,
                                         id: user._id
                                     });
                                 } else {
-                                    console.log('reject');
                                     reject({
                                         status: 400,
                                         err: "Incorrect Password"
