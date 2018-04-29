@@ -4,19 +4,33 @@ import logo from './logo.svg';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
 import './App.css';
-import axios from 'axios';
-import config from './config';
+import axios from './axios';
+import MainContent from './components/MainContent';
+
+
+
 class App extends Component {
+  // state, props
+  state = {
+    images: []
+  }
+
   componentDidMount() {
-    console.log(config.rootpath);
-    axios.get(config.rootpath + "/api/images")
-    .then(data => console.log(data.data))
+    axios.get("/api/images")
+    .then(data => {
+      setTimeout(() => {
+        this.setState({images: data.data});
+      }, 1000);
+    })
     .catch(err => console.error(err));
   }
+
+
   render() {
     return (
       <div className="App">
-        <Navbar />
+        <Navbar images={this.state.images}/>
+        <MainContent images={this.state.images}/>
       </div>
     );
   }
