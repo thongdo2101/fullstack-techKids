@@ -7,7 +7,7 @@ class MainContent extends Component {
         const allImages = this.props.images.map(img => (<GirlImages key={img._id} img={img} />));
         return (
             <div className="container mt-3">
-                <div class="card-columns">
+                <div className="card-columns">
                     {this.props.images.length > 0
                     ? allImages
                     : ""}
