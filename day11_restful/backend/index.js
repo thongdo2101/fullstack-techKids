@@ -48,6 +48,7 @@ try {
 } catch (err) {
     console.log(err);
 }
+
 // register routers
 app.use('/api/images', imageRouter);
 app.use('/api/users', userRouter);
