@@ -4,6 +4,7 @@ import "./App.css";
 import Title from "./components/Title";
 import CreateGame from "./components/CreateGame";
 import BoardGame from "./components/BoardGame";
+import fileController from './fileController';
 
 class App extends Component {
   state = {
@@ -11,11 +12,22 @@ class App extends Component {
     players: ['','','','']
   };
 
+  componentDidMount() {
+    
+  }
+
   onCreateNewGame = (players) => {
     this.setState({
       initialization: true,
       players: players
     });
+    fileController.getGame(1)
+    .then(game => {
+      console.log(game);
+    })
+    .catch(err => {
+      console.log(err);
+    })
   };
 
   render() {
