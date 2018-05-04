@@ -1,19 +1,22 @@
 import React, { Component } from "react";
 
 class BoardGame extends Component {
-  render() {
-    const players = this.props.players;
 
+  state = {
+    game: this.props.game
+  };
+
+  render() {
     return (
       <div>
         <table className="table table-striped w100 text-left">
           <thead>
             <tr>
               <th />
-              <th>{players[0]}</th>
-              <th>{players[1]}</th>
-              <th>{players[2]}</th>
-              <th>{players[3]}</th>
+              <th>{this.state.game.gameId}</th>
+              {/* <th>{this.state.players[1]}</th>
+              <th>{this.state.players[2]}</th>
+              <th>{this.state.players[3]}</th>               */}
             </tr>
             <tr className="head">
               <th>Sum of Score(0)</th>
