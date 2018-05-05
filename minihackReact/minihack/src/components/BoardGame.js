@@ -9,15 +9,6 @@ class BoardGame extends Component {
     sumOfScores: 0
   };
 
-  onChangeRoundScore = (scoreOfRound, index) => {
-    var newRounds = this.state.rounds;
-    newRounds[index] = scoreOfRound;
-    this.setState({
-      rounds: newRounds
-    });
-    console.log(this.state.rounds)
-  }
-
   addRound = event => {
     event.preventDefault();
     var newRounds = this.state.rounds;
@@ -27,12 +18,35 @@ class BoardGame extends Component {
     });
   };
 
+  calScores() {
+    var nScores = this.state.scores;
+    for (let i = 0; i < nScores.length; i++) {
+      let sumCol = 0;
+      for (let j = 0; j < this.state.rounds.length; j++) {
+        const round = this.state.rounds[j];
+        sumCol += round[i];
+      }
+      nScores[i] = sumCol;
+    }
+    this.setState({
+      scores: nScores,
+      sumOfScores: nScores.reduce((a, b) => a + b, 0)
+    });
+  }
+
+  onChangeRoundScore = (scoreOfRound, index) => {
+    var newRounds = this.state.rounds;
+    newRounds[index] = scoreOfRound;
+    this.calScores();
+    this.setState({
+      rounds: newRounds
+    });
+  };
   render() {
     const playersRender = this.state.players.map((value, index) => (
       <th key={index}>{value}</th>
     ));
-
-    const roundsRender = this.state.rounds.map(function(value, index) {
+    const roundsRender = this.state.rounds.map((value, index) => {
       return (
         <Round
           value={value}

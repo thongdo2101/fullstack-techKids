@@ -9,6 +9,9 @@ class Round extends Component {
 
   changeScores(input, index) {
     if (isNaN(input)) return;
+    if (input === '') {
+        input = "0";
+    }
     var value = Number.parseInt(input);
     var newScores = this.state.scores;
     newScores[index] = value;
