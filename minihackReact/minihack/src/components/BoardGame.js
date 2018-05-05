@@ -1,54 +1,76 @@
 import React, { Component } from "react";
+import Round from "./Round";
 
 class BoardGame extends Component {
-
   state = {
-    game: this.props.game
+    players: this.props.players,
+    rounds: [[0, 0, 0, 0]],
+    scores: [0, 0, 0, 0],
+    sumOfScores: 0
+  };
+
+  onChangeRoundScore = (scoreOfRound, index) => {
+    var newRounds = this.state.rounds;
+    newRounds[index] = scoreOfRound;
+    this.setState({
+      rounds: newRounds
+    });
+    console.log(this.state.rounds)
+  }
+
+  addRound = event => {
+    event.preventDefault();
+    var newRounds = this.state.rounds;
+    newRounds.push([0, 0, 0, 0]);
+    this.setState({
+      rounds: newRounds
+    });
   };
 
   render() {
+    const playersRender = this.state.players.map((value, index) => (
+      <th key={index}>{value}</th>
+    ));
+
+    const roundsRender = this.state.rounds.map(function(value, index) {
+      return (
+        <Round
+          value={value}
+          key={index}
+          roundId={index}
+          onChangeRound={this.onChangeRoundScore}
+        />
+      );
+    });
+
+    const scoresRender = this.state.scores.map((value, index) => (
+      <th key={index}>{value}</th>
+    ));
+    const addRoundButtonRender = (
+      <div className="text-center">
+        <button type="button" className="btn" onClick={this.addRound}>
+          ADD ROUND
+        </button>
+      </div>
+    );
+
     return (
       <div>
         <table className="table table-striped w100 text-left">
           <thead>
             <tr>
               <th />
-              <th>{this.state.game.gameId}</th>
-              {/* <th>{this.state.players[1]}</th>
-              <th>{this.state.players[2]}</th>
-              <th>{this.state.players[3]}</th>               */}
+              {playersRender}
             </tr>
             <tr className="head">
-              <th>Sum of Score(0)</th>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
-              <td>0</td>
+              <th>Sum of Score({this.state.sumOfScores})</th>
+              {scoresRender}
+              <th />
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th>Round</th>
-              <td>
-                <input type="text" className="form-control rounded change" />
-              </td>
-              <td>
-                <input type="text" className="form-control rounded change" />
-              </td>
-              <td>
-                <input type="text" className="form-control rounded change" />
-              </td>
-              <td>
-                <input type="text" className="form-control rounded change" />
-              </td>
-            </tr>
-          </tbody>
+          <tbody>{roundsRender}</tbody>
         </table>
-        <form className="text-center">
-          <button type="submit" className="btn">
-            ADD ROUND
-          </button>
-        </form>
+        {addRoundButtonRender}
       </div>
     );
   }

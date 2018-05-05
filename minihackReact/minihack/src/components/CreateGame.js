@@ -20,11 +20,16 @@ class CreateGame extends Component {
   }
 
   HandleSubmit(event) {
-     this.props.onCreateNewGame(this.state.players)
+    this.props.onCreateNewGame(this.state.players);
     event.preventDefault();
   }
 
   render() {
+    const CreateGameButtonRender = (
+      <button type="submit" className="btn">
+        CREATE NEW GAME
+      </button>
+    );
     const inputs = this.state.players.map((player, index) => (
       <input
         key={index}
@@ -43,9 +48,7 @@ class CreateGame extends Component {
         onSubmit={this.HandleSubmit}
       >
         {inputs}
-        <button type="submit" className="btn">
-          CREATE NEW GAME
-        </button>
+        {CreateGameButtonRender}
       </form>
     );
   }
