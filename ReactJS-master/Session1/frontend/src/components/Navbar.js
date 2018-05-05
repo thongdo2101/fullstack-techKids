@@ -10,7 +10,7 @@ class Navbar extends Component {
         return (
             <nav className="navbar navbar-light bg-light">
                 <div className="container text-center">
-                    <SearchField />
+                    <SearchField onSearchChanged={this.props.onSearchChanged}/>
                     <div className="col-sm-6 site_logo">
                         <a href="#!/">
                             <img src={logo} alt="TechKids Hot Girls Logo"/> HOT GIRLS
