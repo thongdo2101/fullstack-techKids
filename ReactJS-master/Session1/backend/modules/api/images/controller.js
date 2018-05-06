@@ -124,7 +124,12 @@ const addComment = (imageId, { userId, content }) =>
           _id: imageId
         },
         {
-          $push: { comment: { createdBy: userId, content } }
+          $push: {
+            comment: {
+              createdBy: userId,
+              content: content
+            }
+          }
         }
       )
       .then(data => resolve(data))

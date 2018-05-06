@@ -1,67 +1,27 @@
 body {
-    background-color: #babababa;
-}
-.nav {
-    background-color: #ffffff;
-}
-.card-columns {
-    column-count: 4;
-}
-
-.card {
-    width: 16rem;
-}
-
-.info {
-    bottom: 102%;
-}
-
-.font-sm {
-    font-size: 9px;
-}
-
-.font-md {
-    font-size: 15px;
-}
-
-.card i {
-    color: white;
-}
-
-.card div span>.detail {
-    color: black;
-}
-
-.info,
-.info1 {
-    display: none;
-}
-
-.card:hover .info {
-    display: inline-flex;
-}
-
-.card:hover .info1 {
-    display: inline;
-}
-
-.avt {
-    width: 45px;
-    height: 45px;
-}
-.avt-1 {
-    width: 35px;
-    height: 35px;
-}
-
-.avt-2 {
-    width: 65px;
-    height: 65px;
-}
-.btn-fb-color {
-    background-color: #3B5998;
-}
-.cover-h {
-    height: 442px;
-}
-
+    background: #dedede;
+  }
+  
+  .navbar {
+    background: #ffffff;
+  }
+  
+  .main_content{
+    margin-top: 20px;
+  }
+  
+  .girl_image {
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 1px 1px #aaaaaa;
+  }
+  
+  .girl_image img{
+    margin-bottom: 10px;
+  }
+  
+  .girl_image h5,
+  .girl_image p{
+    padding: 0 10px;
+    margin-bottom: 10px;
+  }

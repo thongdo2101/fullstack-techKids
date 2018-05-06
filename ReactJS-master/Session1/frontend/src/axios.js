@@ -3,6 +3,7 @@ import config from './config';
 
 
 export default axios.create({
-    baseURL: config.rootpath
+    baseURL: config.rootpath,
+    withCredentials: true
   });
 

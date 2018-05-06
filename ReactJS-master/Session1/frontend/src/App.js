@@ -1,51 +1,64 @@
-/* jshint ignore: start*/
 import React, { Component } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import Navbar from "./components/Navbar";
 import "./App.css";
 import axios from "./axios";
-import MainContent from "./components/MainContent";
+import HomeScreen from "./containers/HomeScreen";
+import DetailScreen from "./containers/DetailScreen";
+import { BrowserRouter, Switch } from "react-router-dom";
+import Route from "react-router-dom/Route";
 
 class App extends Component {
-  // state, props
-  state = {
-    images: [],
-    searchString: ""
-  };
-
-  _onSearchChanged = text => {
-    this.setState({
-      searchString: text
-    });
-  };
-
-  componentDidMount() {
+  state = {};
+  _onLogin = () => {
     axios
-      .get("/api/images")
-      .then(data => {
-        setTimeout(() => {
-          this.setState({
-            images: data.data
-          });
-        }, 1000);
+      .post("/api/auth", {
+        username: "admin",
+        password: "123456"
       })
-      .catch(err => console.error(err));
-  }
-
+      .then(response => {
+        this.setState({
+          username: response.data.username,
+          id: response.data.id
+        });
+        console.log(response);
+      })
+      .catch(err => console.log(err));
+  };
   render() {
-    const displayImages = this.state.images.filter(
-      img =>
-        img.title.includes(this.state.searchString) ||
-        img.description.includes(this.state.searchString)
-    );
     return (
       <div className="App">
-        <Navbar onSearchChanged={this._onSearchChanged} />
-        <MainContent images={displayImages} />
+        <BrowserRouter>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={props => {
+                return (
+                  <HomeScreen
+                    {...props}
+                    username={this.state.username}
+                    onLogin={this._onLogin}
+                  />
+                );
+              }}
+            />
+            <Route
+              path="/images/:imageId"
+              render={props => {
+                return (
+                  <DetailScreen
+                    {...props}
+                    username={this.state.username}
+                    onLogin={this._onLogin}
+                  />
+                );
+              }}
+            />
+          </Switch>
+        </BrowserRouter>
       </div>
     );
   }
 }
 
 export default App;
-/* jshint ignore: end*/

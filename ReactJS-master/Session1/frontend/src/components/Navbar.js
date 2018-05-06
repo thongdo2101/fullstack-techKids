@@ -4,6 +4,7 @@ import React, {Component} from 'react';
 import SearchField from './SearchField';
 import ProfilePanel from './ProfilePanel';
 import logo from '../img/Logo.png';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
     render() {
@@ -12,11 +13,14 @@ class Navbar extends Component {
                 <div className="container text-center">
                     <SearchField onSearchChanged={this.props.onSearchChanged}/>
                     <div className="col-sm-6 site_logo">
-                        <a href="#!/">
+                        <Link to="/">
                             <img src={logo} alt="TechKids Hot Girls Logo"/> HOT GIRLS
-                        </a>
+                        </Link>
                     </div>
-                    <ProfilePanel />
+                    <ProfilePanel 
+                        username={this.props.username}
+                        onLogin={this.props.onLogin}
+                    />
                 </div>
             </nav>
         );

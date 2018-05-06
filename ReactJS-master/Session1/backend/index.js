@@ -10,13 +10,23 @@ const imageRouter = require("./modules/api/images/router");
 const userRouter = require("./modules/api/users/router");
 const authRouter = require("./modules/api/auth/router");
 
+app.use(express.static("./public"));
+
+app.get("/", (req, res) => {
+  res.sendFile("./public/index.html");
+});
+
 app.use((req, res, next) => {
   res.setHeader("X-Frame-Options", "ALLOWALL");
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  if (req.headers.origin) {
+    res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+  }
+  res.setHeader("Access-Control-Allow-Credentials", true);
+
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Authorization Origin, X-Requested-With, Content-Type, Accept"
   );
   next();
 });
