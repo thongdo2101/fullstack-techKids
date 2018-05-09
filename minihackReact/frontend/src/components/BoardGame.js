@@ -1,24 +1,52 @@
 import React, { Component } from "react";
 import Round from "./Round";
+import axios from "../axios";
 
 class BoardGame extends Component {
   state = {
-    players: this.props.players,
-    rounds: [[0, 0, 0, 0]],
+    players: this.props.game.players,
+    rounds: this.props.game.rounds,
     scores: [0, 0, 0, 0],
     sumOfScores: 0
   };
 
-  addRound = event => {
-    event.preventDefault();
+
+  _onNewRound = () => {
+    axios
+      .put(`/api/games/${this.props.game._id}/rounds`)
+      .then(response => {
+        this.setState({
+          rounds: response.data.rounds,
+        })
+        // this.calScores();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  _onChangeRound = (scoreOfRound, index) => {
     var newRounds = this.state.rounds;
-    newRounds.push([0, 0, 0, 0]);
-    this.setState({
-      rounds: newRounds
-    });
+    newRounds[index] = scoreOfRound;
+    console.log(this.state.rounds)
+    console.log(scoreOfRound)
+    console.log(newRounds)
+    axios
+      .put(`/api/games/${this.props.game._id}/rounds/${newRounds[index]._id}`, {
+        rounds: newRounds
+      })
+      .then(response => {
+        this.setState({
+          rounds: newRounds,
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   calScores() {
+    console.log('2')
     var nScores = this.state.scores;
     for (let i = 0; i < nScores.length; i++) {
       let sumCol = 0;
@@ -32,27 +60,20 @@ class BoardGame extends Component {
       scores: nScores,
       sumOfScores: nScores.reduce((a, b) => a + b, 0)
     });
+
   }
 
-  onChangeRoundScore = (scoreOfRound, index) => {
-    var newRounds = this.state.rounds;
-    newRounds[index] = scoreOfRound;
-    this.calScores();
-    this.setState({
-      rounds: newRounds
-    });
-  };
   render() {
-    const playersRender = this.state.players.map((value, index) => (
+    const playersRender = this.props.game.players.map((value, index) => (
       <th key={index}>{value}</th>
     ));
     const roundsRender = this.state.rounds.map((value, index) => {
       return (
         <Round
-          value={value}
+          round={value.scores}
           key={index}
-          roundId={index}
-          onChangeRound={this.onChangeRoundScore}
+          indexOfRound={index}
+          onChangeRound={this._onChangeRound}
         />
       );
     });
@@ -62,7 +83,7 @@ class BoardGame extends Component {
     ));
     const addRoundButtonRender = (
       <div className="text-center">
-        <button type="button" className="btn" onClick={this.addRound}>
+        <button type="button" className="btn" onClick={this._onNewRound}>
           ADD ROUND
         </button>
       </div>

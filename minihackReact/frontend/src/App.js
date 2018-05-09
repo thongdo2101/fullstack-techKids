@@ -7,23 +7,20 @@ import BoardGame from "./components/BoardGame";
 
 class App extends Component {
   state = {
-    initialization: false,
-    players: ['','','','']
+    game: null
   };
 
-  onCreateNewGame = (players) => {
+  onCreateNewGame = (game) => {
     this.setState({
-      initialization: true,
-      players: players
+      game: game
     });
-    
   };
 
   render() {
     return (
       <div className="container">
         <Title />
-        {!this.state.initialization ? <CreateGame onCreateNewGame={this.onCreateNewGame} /> : <BoardGame players={this.state.players}/>}
+        {this.state.game === null ? <CreateGame onCreateNewGame={this.onCreateNewGame} /> : <BoardGame game={this.state.game}/>}
       </div>
     );
   }

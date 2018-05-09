@@ -2,10 +2,12 @@ import React, { Component } from "react";
 
 class Round extends Component {
   state = {
-    roundId: this.props.roundId,
-    scores: this.props.value,
+    indexOfRound: this.props.indexOfRound,
+    round: this.props.round,
     warningMess: ""
   };
+
+
 
   changeScores(input, index) {
     if (isNaN(input)) return;
@@ -13,27 +15,27 @@ class Round extends Component {
         input = "0";
     }
     var value = Number.parseInt(input);
-    var newScores = this.state.scores;
-    newScores[index] = value;
-    var sum = newScores.reduce((a, b) => a + b, 0);
+    var newRound = this.state.round;
+    newRound[index] = value;
+    var sum = newRound.reduce((a, b) => a + b, 0);
     if (sum !== 0) {
-      this.props.onChangeRound(newScores, this.state.roundId);
+      this.props.onChangeRound(newRound, this.state.indexOfRound);
       this.setState({
-        scores: newScores,
-        warningMess: `the scores of round ${this.state.roundId} is not valid`
+        round: newRound,
+        warningMess: `the scores of round ${this.state.indexOfRound} is not valid`
       });
     } else {
-      this.props.onChangeRound(newScores, this.state.roundId);
+      this.props.onChangeRound(newRound, this.state.indexOfRound);
       this.setState({
-        scores: newScores,
+        round: newRound,
         warningMess: ""
       });
     }
   }
 
   render() {
-    const roundNum = <th>Round {this.state.roundId}</th>;
-    const scoresRender = this.state.scores.map((value, index) => (
+    const roundNum = <th>Round {this.state.indexOfRound}</th>;
+    const roundRender = this.state.round.map((value, index) => (
       <td key={index}>
         <input
           type="text"
@@ -49,7 +51,7 @@ class Round extends Component {
     return (
       <tr>
         {roundNum}
-        {scoresRender}
+        {roundRender}
         <td>{this.state.warningMess}</td>
       </tr>
     );

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "../axios";
 
 class CreateGame extends Component {
   constructor(props) {
@@ -11,6 +12,20 @@ class CreateGame extends Component {
     this.HandleSubmit = this.HandleSubmit.bind(this);
   }
 
+  _onCreateGame = () => {
+    axios
+      .post("/api/games", {
+        players: this.state.players
+      })
+      .then(response => {
+        console.log(response.data.data.players);
+        this.props.onCreateNewGame(response.data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   HandleChange(index, value) {
     let newPlayers = this.state.players;
     newPlayers[index] = value;
@@ -20,7 +35,7 @@ class CreateGame extends Component {
   }
 
   HandleSubmit(event) {
-    this.props.onCreateNewGame(this.state.players);
+    this._onCreateGame();
     event.preventDefault();
   }
 
